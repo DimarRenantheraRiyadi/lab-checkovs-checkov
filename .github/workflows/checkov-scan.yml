@@ -1,5 +1,9 @@
 name: "IaC Security Scan dengan Checkov"
 
+permissions:
+  contents: read
+  security-events: write
+
 on:
   push:
     branches:
@@ -21,7 +25,7 @@ jobs:
           framework: all
           output_format: sarif
           output_file_path: checkov-results.sarif
-          soft_fail: true # Agar pipeline hijau (sukses) meskipun ada temuan, memudahkan screenshot
+          soft_fail: true
           
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3
